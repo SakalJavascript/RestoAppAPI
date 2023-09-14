@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
+using RestoAppAPI.Dtos;
 using RestoAppAPI.Modal;
 
 namespace RestoAppAPI.Repository
@@ -14,6 +15,29 @@ namespace RestoAppAPI.Repository
        {
            this._configuration=config;
        }
+
+        public void ChnangeTable(ChangeTableDtos changeTableDtos)
+        {      
+            using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("[Update_ChangeTable]", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@FromTableID", changeTableDtos.FromTableID);
+                    command.Parameters.AddWithValue("@ToTableID", changeTableDtos.ToTableID);
+                    command.Parameters.AddWithValue("@CurrentOrderId", changeTableDtos.CurrentOrderId);
+                    // Execute the stored procedure
+                    command.ExecuteNonQuery().ToString();
+
+              
+                }
+            }
+        }
+    
+
         public List<TableModal> GetAllTables()
         {
               List<TableModal> tables = new List<TableModal>();
