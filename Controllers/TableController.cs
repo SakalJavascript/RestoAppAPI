@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using RestoAppAPI.Dtos;
 using RestoAppAPI.Service;
 
 namespace RestoAppAPI.Controllers
@@ -17,6 +18,12 @@ namespace RestoAppAPI.Controllers
         public IActionResult Get()
         {
             return Ok( this.tableService.GetAllTables());
+        }
+        [HttpPost()]
+        public IActionResult ChangeTable( [FromBody] ChangeTableDtos changeTableDtos)
+        {
+            this.tableService.ChnangeTable(changeTableDtos);
+            return Ok();
         }
     }
 }
