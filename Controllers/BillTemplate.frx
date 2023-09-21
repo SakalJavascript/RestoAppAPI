@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report>
+    <Title>Restaurant Bill</Title>
+
+    <DataSource Name="BillItems">
+        <Field Name="Name" DataType="String" />
+        <Field Name="Quantity" DataType="Int32" />
+        <Field Name="Price" DataType="Double" />
+    </DataSource>
+
+    <Bands>
+        <DataBand>
+            <Table>
+                <Columns>
+                    <Column Width="100">Name</Column>
+                    <Column Width="100">Quantity</Column>
+                    <Column Width="100">Price</Column>
+                </Columns>
+
+                <Rows>
+                    <Row>
+                        <Cell DataField="Name" />
+                        <Cell DataField="Quantity" />
+                        <Cell DataField="Price" />
+                    </Row>
+                </Rows>
+            </Table>
+        </DataBand>
+
+        <SummaryBand>
+            <Table>
+                <Columns>
+                    <Column Width="200">Total</Column>
+                    <Column Width="100">
+                        <TextField>
+                            <Formula>
+                                Sum(BillItems.Price * BillItems.Quantity)
+                            </Formula>
+                        </TextField>
+                    </Column>
+                </Columns>
+
+                <Rows>
+                    <Row>
+                        <Cell>Total</Cell>
+                        <Cell />
+                    </Row>
+                </Rows>
+            </Table>
+        </SummaryBand>
+    </Bands>
+</Report>

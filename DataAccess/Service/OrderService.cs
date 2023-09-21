@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using RestoAppAPI.Dtos;
 using RestoAppAPI.Modal;
 using RestoAppAPI.Repository;
 
@@ -19,6 +20,20 @@ namespace RestoAppAPI.Service
         public  List<OrderViewModal> getALLOrders()
         {
             return this.orderRepository.getALLOrders();
+        }       
+
+        public List<KitchenOrderDetailViewModal> KichenOrdersByTable(string tableIds)
+        {
+             return this.orderRepository.KichenOrdersByTable(tableIds);
+        }
+        public string SaveTableBilling(string tableIds)
+        {
+            return this.orderRepository.SaveTableBilling(tableIds);
+        }
+
+        public List<KitchenOrderDto> KitchenOrdersByOrderId(int OrderId)
+        {
+           return this.orderRepository.KitchenOrdersByOrderId(OrderId);
         }
     }
 }
