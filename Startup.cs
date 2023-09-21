@@ -145,6 +145,7 @@ namespace RestoAppAPI
                 FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Logs")),
                 RequestPath = "/Logs"
             });
+           
              app.UseCors("AllowAll");
             app.UseEndpoints(endpoints =>
             {

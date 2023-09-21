@@ -66,7 +66,7 @@ namespace RestoAppAPI.Repository
                 command.Parameters.AddWithValue("@CreatedBy", 99);
                 command.Parameters.AddWithValue("@TotalAmount", order.TotalAmount);
                 command.Parameters.AddWithValue("@OrderId", order.OrderID);
-                string detailsXml = XmlConverter.GenerateXml(order.OrderDetails);
+                string detailsXml = order.OrderDetails.GenerateXml();
                 command.Parameters.AddWithValue("@DetailsXML", detailsXml);
                 
                     SqlParameter outputParameter = new SqlParameter("@OrderIDOut", SqlDbType.Int);
