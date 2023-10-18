@@ -17,6 +17,11 @@ namespace RestoAppAPI.Service
             return this.menuRepository.getMenuByCat(categoryID);
         }
 
+        public string Save(MenuModal menuModal)
+        {
+            return this.menuRepository.Save(menuModal);
+        }
+
         public string SaveOrder(KitchenOrderModal kitchenOrderModal)
         {
            return this.menuRepository.SaveOrder(kitchenOrderModal);

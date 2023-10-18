@@ -23,13 +23,18 @@ namespace RestoAppAPI.Controllers
         }
 
         
-        [HttpPost()]       
+        [HttpPost("SaveOrder")]       
         public IActionResult SaveOrder(KitchenOrderModal orderModal)
         {            
             
             return Ok(this.menuService.SaveOrder(orderModal));
         }
 
+        [HttpPost()]
+        public IActionResult Save(MenuModal menuModal)
+        {
+            return Ok(this.menuService.Save(menuModal));
+        }
 
     }
 }
