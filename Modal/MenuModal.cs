@@ -9,10 +9,11 @@ namespace RestoAppAPI.Modal
         public string Description { get; set; }
         public decimal Price { get; set; }
         public int CategoryID { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public int CreatedBy { get; set; }
-        public DateTime UpdatedDate { get; set; }
-        public int UpdatedBy { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public int? CreatedBy { get; set; }
+        public DateTime? UpdatedDate { get; set; }
+        public int? UpdatedBy { get; set; }
         public bool IsDeleted { get; set; }
     }
 }
+

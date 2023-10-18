@@ -1,15 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using RestoAppAPI.Service;
 using RestoAppAPI.Repository;
@@ -56,7 +49,7 @@ namespace RestoAppAPI
             services.AddScoped<IImageRepository,ImageRepository>();
             services.AddScoped<IMenuCategoryService,MenuCategoryService>();
             services.AddScoped<IImageService,ImageService>();
-            services.AddScoped<IMenuCategoryRepository,MenuCategoryRepository>();
+            services.AddScoped<IMenuCategoryRepository,MenuCategoryDapperRepository>();
             services.AddScoped<ITokenRepository,TokenRepository>();
             services.AddScoped<IMenuRepository,MenuRepository>();
             services.AddScoped<IMenuSerive,MenuService>();
@@ -64,6 +57,8 @@ namespace RestoAppAPI
             services.AddScoped<IOrderService,OrderSerive>();
             services.AddScoped<ITableService,TableService>();
             services.AddScoped<ITableRepository,TableRepository>();
+            services.AddScoped<IDashBoardRepository,DashBoardRepository>();
+            services.AddScoped<IDashboardService,DashboardSerive>();
             
            
            

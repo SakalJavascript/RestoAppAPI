@@ -7,5 +7,7 @@ namespace RestoAppAPI.Service
     {
         List<MenuModal>GetMenuByCat(int categoryID);
          string SaveOrder(KitchenOrderModal kitchenOrderModal);
+
+         string Save(MenuModal menuModal);
     }
 }

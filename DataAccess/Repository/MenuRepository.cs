@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using Dapper;
 using Microsoft.Extensions.Configuration;
 using RestoAppAPI.Helpers;
 using RestoAppAPI.Modal;
@@ -49,6 +50,25 @@ namespace RestoAppAPI.Repository
             }
 
             return menuItems;
+        }
+
+        public string Save(MenuModal menuModal)
+        {
+            
+            using(SqlConnection connection= new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            {
+                DynamicParameters parameters =new DynamicParameters();
+                parameters.Add("@CategoryId",menuModal.CategoryID,DbType.Int32);
+                parameters.Add("@Name",menuModal.MenuName,DbType.String);
+                parameters.Add("@Description",menuModal.Description,DbType.String);
+                parameters.Add("@UserId",0,DbType.Int16);
+                parameters.Add("@Price", menuModal.Price);
+                 parameters.Add("@ErrorMessage", dbType: DbType.String, direction: ParameterDirection.Output, size: 100);
+                connection.Execute("[Insert_Update_Menu]",parameters,commandType: CommandType.StoredProcedure);
+                
+                return parameters.Get<string>("@ErrorMessage");
+            }
+            
         }
 
         public string SaveOrder(KitchenOrderModal order)

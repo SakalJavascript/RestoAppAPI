@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.4" />
     <PackageReference Include="FastReport.OpenSource" Version="2023.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
