@@ -31,10 +31,10 @@ namespace RestoAppAPI.Controllers
             return Ok(this.orderService.KitchenOrdersByOrderId(orderId));
         }
         
-        [HttpGet()]
-        public IActionResult Get()
+        [HttpGet("{pageNumber}/{pageSize}")]
+        public IActionResult Get(int pageNumber, int pageSize)
         {
-            return Ok(this.orderService.getALLOrders());
+            return Ok(this.orderService.getALLOrders(pageNumber,pageSize));
         }
 
         [HttpGet("table-bills/{TableIds}")]
@@ -47,6 +47,13 @@ namespace RestoAppAPI.Controllers
         {                  
             return Ok(this.orderService.SaveTableBilling(TableIds));
         }
+
+         [HttpGet("count")]
+        public IActionResult GetAllOrderCount()
+        {                  
+            return Ok(this.orderService.getALLOrdersCount());
+        }
+
 
         [HttpGet("pdf")]
         public IActionResult GetPdf()

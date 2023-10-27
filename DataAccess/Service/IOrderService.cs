@@ -8,11 +8,12 @@ namespace RestoAppAPI.Service
     {
         OrderViewModal GetOrder(int orderId);
 
-         List<OrderViewModal> getALLOrders();
+         List<OrderViewModal> getALLOrders(int PageNumber, int pageSize);
 
           List<KitchenOrderDetailViewModal> KichenOrdersByTable(string tableIds);
           string SaveTableBilling(string tableIds);
-           List<KitchenOrderDto> KitchenOrdersByOrderId(int OrderId);
+          List<KitchenOrderDto> KitchenOrdersByOrderId(int OrderId);
+          int getALLOrdersCount();
      
     }
 }

@@ -17,9 +17,9 @@ namespace RestoAppAPI.Service
         {
             return this.orderRepository.GetOrder(orderId);
         }
-        public  List<OrderViewModal> getALLOrders()
+        public  List<OrderViewModal> getALLOrders(int PageNumber, int pageSize)
         {
-            return this.orderRepository.getALLOrders();
+            return this.orderRepository.getALLOrders(PageNumber,pageSize);
         }       
 
         public List<KitchenOrderDetailViewModal> KichenOrdersByTable(string tableIds)
@@ -35,5 +35,9 @@ namespace RestoAppAPI.Service
         {
            return this.orderRepository.KitchenOrdersByOrderId(OrderId);
         }
+          public int getALLOrdersCount()
+          {
+            return this.orderRepository.getALLOrdersCount();
+          }
     }
 }

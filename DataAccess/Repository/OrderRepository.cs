@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using Microsoft.Extensions.Configuration;
 using RestoAppAPI.Dtos;
 using RestoAppAPI.Helpers;
@@ -77,7 +76,33 @@ namespace RestoAppAPI.Repository
             return order;
         }
 
-         public List<OrderViewModal> getALLOrders()
+        
+        public int getALLOrdersCount()
+        {
+          
+            var Total=0;
+            using (SqlConnection connection = new SqlConnection( _configuration.GetConnectionString("DefaultConnection")))
+            {
+                connection.Open();                
+                using (SqlCommand command = new SqlCommand("[Get_ALL_Orders_Count]", connection))
+                {
+              
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Total = Convert.ToInt32(reader["Total"]);                               
+                         
+                        }
+                    }
+                }
+            }
+
+            return Total;
+        }
+    
+
+         public List<OrderViewModal> getALLOrders(int PageNumber, int pageSize)
         {
             List<OrderViewModal> orders = new List<OrderViewModal>();
 
@@ -88,7 +113,8 @@ namespace RestoAppAPI.Repository
                 using (SqlCommand command = new SqlCommand("Get_ALL_Orders", connection))
                 {
                     command.CommandType = CommandType.StoredProcedure;
-                   
+                    command.Parameters.AddWithValue("@PageNumber",PageNumber);
+                    command.Parameters.AddWithValue("@pageSize",pageSize);
 
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
