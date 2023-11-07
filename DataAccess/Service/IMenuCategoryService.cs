@@ -10,5 +10,7 @@ namespace RestoAppAPI.Service
 
          List<MenuCategoryModal> GetBySearchText(string searchText);
         
+        int GetAllCount();
+         public MenuCategoryModal GetById(int Id);
     }
 }

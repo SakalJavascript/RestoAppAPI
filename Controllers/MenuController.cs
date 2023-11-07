@@ -17,9 +17,16 @@ namespace RestoAppAPI.Controllers
 
         [HttpGet()]       
         public IActionResult Get(int categoryID)
-        {            
+        {           
             
             return Ok(this.menuService.GetMenuByCat(categoryID));
+        }
+
+        [HttpGet("{pageIndex}/{pageSize}")]       
+        public IActionResult Get(int pageIndex, int pageSize)
+        {           
+            
+            return Ok(this.menuService.getMenu(pageIndex,pageSize));
         }
 
         

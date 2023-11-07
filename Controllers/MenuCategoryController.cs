@@ -89,5 +89,46 @@ namespace RestoAppAPI.Controllers
                                 
         }
 
+          [HttpGet("count")]
+        public IActionResult Get()
+        { 
+            var response= new ResponseDto<int>();    
+            var count= _menuCategoryService.GetAllCount();      
+            if(count>0)
+           {
+                response.IsSuccess=true;
+                response.Data=count;            
+                return Ok(response);
+           }
+           else
+           {
+                response.IsSuccess=false;
+                response.Errors.Add(((int)ValidationType.DataNotFount),"There are no Menu Categories");
+                return NotFound(response);
+           }
+            
+        }
+
+        [HttpGet("{Id}")]
+        public IActionResult Get(int Id)
+        { 
+            var response= new ResponseDto<MenuCategoryModal>();    
+            var menuCategory= _menuCategoryService.GetById(Id);      
+            if(menuCategory!=null)
+           {
+                response.IsSuccess=true;
+                response.Data=menuCategory;            
+                return Ok(response);
+           }
+           else
+           {
+                response.IsSuccess=false;
+                response.Errors.Add(((int)ValidationType.DataNotFount),"There are no Menu Category for this Id");
+                return NotFound(response);
+           }
+            
+        }
+
+
     }
 }

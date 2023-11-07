@@ -7,6 +7,7 @@ namespace RestoAppAPI.Repository
          List<MenuCategoryModal> GetByPagination(int Pagesize=10, int PageNumber=1);
         string Save(MenuCategoryModal menuCategoryModal);
         List<MenuCategoryModal> GetBySearchText(string searchText);
-        
+        int GetAllCount();
+        public MenuCategoryModal GetById(int Id);
     }
 }
