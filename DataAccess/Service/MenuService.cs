@@ -12,6 +12,12 @@ namespace RestoAppAPI.Service
         {
             this.menuRepository = menuRepository;
         }
+
+        public List<MenuModal> getMenu(int pagIndex, int pageSize)
+        {
+            return this.menuRepository.getMenu(pagIndex,pageSize);
+        }
+
         public List<MenuModal> GetMenuByCat(int categoryID)
         {
             return this.menuRepository.getMenuByCat(categoryID);

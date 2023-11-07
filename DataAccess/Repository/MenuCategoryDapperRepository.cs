@@ -16,6 +16,22 @@ namespace RestoAppAPI.Repository
             this._configuration = configuration;
         }
 
+        public int GetAllCount()
+        {
+          using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
+            {
+                connection.Open();
+       
+
+                return connection.QueryFirst<int>("select Count(*) from MenuCategory where IsDeleted=0", commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public MenuCategoryModal GetById(int Id)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public List<MenuCategoryModal> GetByPagination(int Pagesize = 10, int PageNumber = 1)
         {
             using (SqlConnection connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))

@@ -30,6 +30,15 @@ namespace RestoAppAPI.Service
         {
            return _categoryRepository.GetBySearchText(searchText);
         }
-        
+
+        public int GetAllCount()
+        {
+            return _categoryRepository.GetAllCount();
+        }
+
+        public MenuCategoryModal GetById(int Id)
+        {
+            return _categoryRepository.GetById(Id);
+        }
     }
 }

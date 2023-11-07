@@ -49,7 +49,7 @@ namespace RestoAppAPI
             services.AddScoped<IImageRepository,ImageRepository>();
             services.AddScoped<IMenuCategoryService,MenuCategoryService>();
             services.AddScoped<IImageService,ImageService>();
-            services.AddScoped<IMenuCategoryRepository,MenuCategoryDapperRepository>();
+            services.AddScoped<IMenuCategoryRepository,MenuCategoryRepository>();
             services.AddScoped<ITokenRepository,TokenRepository>();
             services.AddScoped<IMenuRepository,MenuRepository>();
             services.AddScoped<IMenuSerive,MenuService>();

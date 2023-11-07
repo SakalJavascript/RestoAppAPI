@@ -100,5 +100,43 @@ namespace RestoAppAPI.Repository
             }
         }
         }
+
+         public List<MenuModal> getMenu(int pagIndex,int pageSize)
+        {
+            List<MenuModal> menuItems = new List<MenuModal>();
+
+            using (SqlConnection connection = new SqlConnection( _configuration.GetConnectionString("DefaultConnection")))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("[Get_ALL_Menu]", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@PageNumber", pagIndex);
+                    command.Parameters.AddWithValue("@pageSize", pageSize);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            MenuModal menuItem = new MenuModal
+                            {
+                                ID = Convert.ToInt32(reader["ID"]),
+                                MenuName = reader["MenuName"].ToString(),
+                                Description = reader["Description"].ToString(),
+                                Price = Convert.ToDecimal(reader["Price"]),
+                                CatName=reader["MenuCatName"].ToString(),                            };
+                            
+                            
+                            menuItems.Add(menuItem);
+                        }
+                    }
+                }
+            }
+
+            return menuItems;
+        }
+
+
+    
     }
 }

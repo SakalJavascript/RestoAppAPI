@@ -14,6 +14,7 @@ namespace RestoAppAPI.Modal
         public DateTime? UpdatedDate { get; set; }
         public int? UpdatedBy { get; set; }
         public bool IsDeleted { get; set; }
+        public string CatName { get; set; }
     }
 }
 

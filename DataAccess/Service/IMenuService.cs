@@ -9,5 +9,7 @@ namespace RestoAppAPI.Service
          string SaveOrder(KitchenOrderModal kitchenOrderModal);
 
          string Save(MenuModal menuModal);
+
+          public List<MenuModal> getMenu(int pagIndex,int pageSize);
     }
 }
