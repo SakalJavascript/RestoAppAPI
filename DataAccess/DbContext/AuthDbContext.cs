@@ -10,8 +10,6 @@ namespace RestoAppAPI.Repository.DbContext
         public AuthDbContext(DbContextOptions<AuthDbContext> options) : base(options)
         {
         }
-
-
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

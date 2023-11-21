@@ -1,10 +1,12 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RestoAppAPI.Dtos;
 using RestoAppAPI.Service;
 
 namespace RestoAppAPI.Controllers
 {
-    [Route("api/[Controller]")]
+    [Authorize]
+    [Route("api/[Controller]")]    
     public class TableController:ControllerBase
     {
         private readonly ITableService tableService;
