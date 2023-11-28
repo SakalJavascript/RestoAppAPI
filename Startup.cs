@@ -59,6 +59,9 @@ namespace RestoAppAPI
             services.AddScoped<ITableRepository,TableRepository>();
             services.AddScoped<IDashBoardRepository,DashBoardRepository>();
             services.AddScoped<IDashboardService,DashboardSerive>();
+            services.AddScoped<IFrormMasterService,FormMasterService>();
+            services.AddScoped<IFormRepository,FormRepository>();
+
             
            
            
