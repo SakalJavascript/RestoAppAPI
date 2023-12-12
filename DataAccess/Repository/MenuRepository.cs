@@ -39,7 +39,8 @@ namespace RestoAppAPI.Repository
                                 ID = Convert.ToInt32(reader["ID"]),
                                 MenuName = reader["MenuName"].ToString(),
                                 Description = reader["Description"].ToString(),
-                                Price = Convert.ToDecimal(reader["Price"]),
+                                Price = Convert.ToDecimal(reader["Price"]),                              
+                                
                                
                             };
 
@@ -58,6 +59,7 @@ namespace RestoAppAPI.Repository
             using(SqlConnection connection= new SqlConnection(_configuration.GetConnectionString("DefaultConnection")))
             {
                 DynamicParameters parameters =new DynamicParameters();
+                parameters.Add("@ID",menuModal.ID,DbType.Int32);
                 parameters.Add("@CategoryId",menuModal.CategoryID,DbType.Int32);
                 parameters.Add("@Name",menuModal.MenuName,DbType.String);
                 parameters.Add("@Description",menuModal.Description,DbType.String);
@@ -136,7 +138,67 @@ namespace RestoAppAPI.Repository
             return menuItems;
         }
 
+        public int getTotalMenuCount()
+        {
+            int total =0;
 
-    
+            using (SqlConnection connection = new SqlConnection( _configuration.GetConnectionString("DefaultConnection")))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("select Count(*) total from Menu", connection))
+                {
+                    command.CommandType = CommandType.Text;                    
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            
+                                total = Convert.ToInt32(reader["total"]);
+                               
+                          
+                        }
+                    }
+                }
+            }
+
+            return total;
+        }
+
+        public MenuModal GetById(int Id)
+        {
+             MenuModal menuItem = new MenuModal();
+
+            using (SqlConnection connection = new SqlConnection( _configuration.GetConnectionString("DefaultConnection")))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("[Get_Menu_By_Id]", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@Id", Id);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                             menuItem = new MenuModal
+                            {
+                                ID = Convert.ToInt32(reader["ID"]),
+                                MenuName = reader["MenuName"].ToString(),
+                                Description = reader["Description"].ToString(),
+                                Price = Convert.ToDecimal(reader["Price"]),
+                                CategoryID = Convert.ToInt32(reader["CategoryID"]),
+                            };
+
+                            
+                        }
+                    }
+                }
+            }
+
+            return menuItem;
+        }
     }
 }
