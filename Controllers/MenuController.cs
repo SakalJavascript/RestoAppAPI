@@ -21,6 +21,19 @@ namespace RestoAppAPI.Controllers
             
             return Ok(this.menuService.GetMenuByCat(categoryID));
         }
+        [HttpGet("count")]       
+        public IActionResult Get()
+        {           
+            
+            return Ok(this.menuService.getTotalMenuCount());
+        }
+        [HttpGet("{Id}")]       
+        public IActionResult GetById(int Id)
+        {           
+            
+            return Ok(this.menuService.GetById(Id));
+        }
+
 
         [HttpGet("{pageIndex}/{pageSize}")]       
         public IActionResult Get(int pageIndex, int pageSize)
